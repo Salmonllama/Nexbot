@@ -1,5 +1,6 @@
 .gradle
 build/
+bin/
 
 # Stupid Eclipse project files
 .classpath
