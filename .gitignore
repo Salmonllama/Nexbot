@@ -1,6 +1,11 @@
 .gradle
 build/
 
+# Stupid Eclipse project files
+.classpath
+.project
+.settings
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
