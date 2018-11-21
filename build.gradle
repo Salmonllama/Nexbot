@@ -22,4 +22,5 @@ repositories {
 
 dependencies {
     implementation "org.javacord:javacord:3.0.1"
+    compile "org.xerial:sqlite-jdbc:3.7.2"
 }
