@@ -2,6 +2,9 @@
 build/
 bin/
 
+# Stupid IntelliJ stuff
+.idea
+
 # Stupid Eclipse project files
 .classpath
 .project
