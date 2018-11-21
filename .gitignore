@@ -5,9 +5,6 @@ bin/
 # Stupid IntelliJ stuff
 .idea
 
-# Stupid VSCode stuff
-.vscode
-
 # Stupid Eclipse project files
 .classpath
 .project
