@@ -2,6 +2,9 @@
 build/
 bin/
 
+# Ignore any sqlite databases created
+*.db
+
 # Stupid IntelliJ stuff
 .idea
 *.iml
