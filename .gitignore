@@ -4,7 +4,7 @@ bin/
 
 # Stupid IntelliJ stuff
 .idea
-.iml
+*.iml
 
 # Stupid VSCode stuff
 .vscode
