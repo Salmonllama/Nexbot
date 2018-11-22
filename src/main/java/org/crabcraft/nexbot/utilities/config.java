@@ -3,6 +3,7 @@ package org.crabcraft.nexbot.utilities;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -24,8 +25,15 @@ public class Config {
             System.out.println("Config file does not exist, we need to create it!");
             // Create and set the first time config file.
             Properties properties = new Properties();
-            properties.setProperty("token", "YOUR-TOKEN-HERE!");
+            properties.setProperty("token", "YOUR-TOKEN-HERE");
             properties.setProperty("default-prefix", "?");
+
+            try {
+                properties.store(new FileWriter(new File("config.properties")), null);
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
         }
      }
 
