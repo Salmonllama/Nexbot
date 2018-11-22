@@ -1,6 +1,10 @@
 package org.crabcraft.nexbot.utilities;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
@@ -25,6 +29,33 @@ public class Config {
         }
      }
 
-    public static void getToken() { }
-    public static void getDefaultPrefix() { }
+     public static Properties loadConfigFile() {
+        Properties properties = new Properties();
+        String fileName = "config.properties";
+        InputStream input = null;
+
+        try {
+            input = new FileInputStream(fileName);
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("Couldn't find config file" + e);
+        }
+
+        try {
+            properties.load(input);
+        }
+        catch (IOException e) {
+            System.out.println("Couldn't read the config file" + e);
+        }
+
+        return properties;
+     }
+
+    public static String getToken() {
+        return Config.loadConfigFile().getProperty("token");
+     }
+
+    public static String getDefaultPrefix() {
+        return Config.loadConfigFile().getProperty("default-prefix");
+     }
 }
