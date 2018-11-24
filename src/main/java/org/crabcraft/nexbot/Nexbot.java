@@ -5,6 +5,7 @@ import org.crabcraft.nexbot.commands.TestCommand;
 import org.crabcraft.nexbot.utilities.Config;
 import org.crabcraft.nexbot.utilities.Database;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.DiscordApi;
 
 public class Nexbot {
     
@@ -14,9 +15,11 @@ public class Nexbot {
         Config.firstTimeSetup();
         Database.firstTimeSetup();
 
-        new DiscordApiBuilder().setToken(Config.getToken()).login().thenAccept(api -> {
+        DiscordApi api = new DiscordApiBuilder().setToken(Config.getToken()).login().join();
 
-            api.addMessageCreateListener(CommandRegistry.registerCommand(new TestCommand()));
-        });
+        // CommandRegistry.registerCommand(new TestCommand());
+        // CommandRegistry is broken, throwing NPEs. TODO: fix it lul.
+
+        api.addMessageCreateListener(new TestCommand());
     }
 }
