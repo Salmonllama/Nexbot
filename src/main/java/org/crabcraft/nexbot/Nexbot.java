@@ -1,6 +1,6 @@
 package org.crabcraft.nexbot;
 
-import org.crabcraft.nexbot.commandler.CommandRegistry;
+// import org.crabcraft.nexbot.commandler.CommandRegistry;
 import org.crabcraft.nexbot.commands.TestCommand;
 import org.crabcraft.nexbot.utilities.Config;
 import org.crabcraft.nexbot.utilities.Database;
