@@ -16,7 +16,6 @@ public class Nexbot {
 
         new DiscordApiBuilder().setToken(Config.getToken()).login().thenAccept(api -> {
 
-            // Add the command framework as a listener
             api.addMessageCreateListener(CommandRegistry.registerCommand(new TestCommand()));
         });
     }
