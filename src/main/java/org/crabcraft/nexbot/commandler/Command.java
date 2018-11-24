@@ -51,4 +51,9 @@ public abstract class Command implements MessageCreateListener {
         // Get the arguments; remove the command itself
         return Arrays.copyOfRange(cutPrefix(message), 1, cutPrefix(message).length);
     }
+
+    // TODO: send embeds and other types of message responses
+    protected Message sendResponse(MessageCreateEvent event, String message) {
+        return event.getChannel().sendMessage(message).join();
+    }
 }
