@@ -37,6 +37,8 @@ public abstract class Command implements MessageCreateListener {
         onCommand(event, getCommandArgs(event.getMessageContent()));
     }
 
+    // TODO hasPermissions() inhibitor
+
     protected static String[] cutPrefix(String message) {
         // Remove the prefix from the command
         return message.substring(1).split(" ");
