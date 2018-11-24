@@ -26,10 +26,11 @@ public abstract class Command implements MessageCreateListener {
         // TODO: Add server-specific prefixes
         // Check for prefix validation
         if (!event.getMessageContent().split("")[0].equals(Config.getDefaultPrefix())) {
-            // Ignore prefixes 
+            // Ignore prefixes that aren't in the config
             return;
         }
         if (!isCommand(event.getMessageContent())) {
+            // Ignore any message that doesn't start with a registered command or its alias
             return;
         }
 
