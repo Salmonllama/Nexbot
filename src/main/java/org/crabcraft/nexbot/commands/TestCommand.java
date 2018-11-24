@@ -22,6 +22,8 @@ public class TestCommand extends Command {
     @Override
     public void onCommand(MessageCreateEvent event, String[] args) {
         sendResponse(event, "test");
-        sendResponse(event, args[0]);
+        if (args.length > 0) {
+            sendResponse(event, args[0]);
+        }
     }
 }
