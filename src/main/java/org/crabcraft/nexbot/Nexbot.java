@@ -1,6 +1,7 @@
 package org.crabcraft.nexbot;
 
 import org.crabcraft.nexbot.commandler.CommandRegistry;
+import org.crabcraft.nexbot.commands.TestCommand;
 import org.crabcraft.nexbot.utilities.Config;
 import org.crabcraft.nexbot.utilities.Database;
 import org.javacord.api.DiscordApiBuilder;
@@ -16,7 +17,7 @@ public class Nexbot {
         new DiscordApiBuilder().setToken(Config.getToken()).login().thenAccept(api -> {
 
             // Add the command framework as a listener
-            // api.addMessageCreateListener(CommandRegistry.registerCommand());
+            api.addMessageCreateListener(CommandRegistry.registerCommand(new TestCommand()));
         });
     }
 }
