@@ -9,7 +9,7 @@ public class CommandRegistry {
         commands = new TreeMap<>();
     }
 
-    public static Command registerCommand(Command command) {
+    public Command registerCommand(Command command) {
         commands.put(command.Aliases().get(0), command);
         return command;
     }

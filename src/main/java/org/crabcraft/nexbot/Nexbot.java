@@ -1,6 +1,6 @@
 package org.crabcraft.nexbot;
 
-// import org.crabcraft.nexbot.commandler.CommandRegistry;
+import org.crabcraft.nexbot.commandler.CommandRegistry;
 import org.crabcraft.nexbot.commands.TestCommand;
 import org.crabcraft.nexbot.utilities.Config;
 import org.crabcraft.nexbot.utilities.Database;
@@ -16,10 +16,10 @@ public class Nexbot {
         Database.firstTimeSetup();
 
         DiscordApi api = new DiscordApiBuilder().setToken(Config.getToken()).login().join();
+        System.out.println("Bot invite link: " + api.createBotInvite());
 
-        // CommandRegistry.registerCommand(new TestCommand());
-        // CommandRegistry is broken, throwing NPEs. TODO: fix it lul.
+        CommandRegistry registry = new CommandRegistry();
 
-        api.addMessageCreateListener(new TestCommand());
+        api.addMessageCreateListener(registry.registerCommand(new TestCommand()));
     }
 }
