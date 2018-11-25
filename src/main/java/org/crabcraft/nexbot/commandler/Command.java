@@ -2,9 +2,11 @@ package org.crabcraft.nexbot.commandler;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Future;
 
 import org.crabcraft.nexbot.utilities.Config;
 import org.javacord.api.entity.message.Message;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
@@ -25,7 +27,7 @@ public abstract class Command implements MessageCreateListener {
         }
         // TODO: Add server-specific prefixes
         // Check for prefix validation
-        // TODO: make sure it tracks the prefix *length* too, in cutPrefix() as well.
+        // TODO: make sure it tracks the prefix length too, in cutPrefix() as well.
         if (!event.getMessageContent().split("")[0].equals(Config.getDefaultPrefix())) {
             // Ignore prefixes that aren't in the config
             return;
@@ -56,7 +58,11 @@ public abstract class Command implements MessageCreateListener {
     }
 
     // TODO: send embeds and other types of message responses
-    protected Message sendResponse(MessageCreateEvent event, String message) {
-        return event.getChannel().sendMessage(message).join();
+    protected Future<Message> sendResponse(MessageCreateEvent event, String message) {
+        return event.getChannel().sendMessage(message);
+    }
+
+    protected Future<Message> sendResponse(MessageCreateEvent event, EmbedBuilder embed) {
+        return event.getChannel().sendMessage(embed);
     }
 }
