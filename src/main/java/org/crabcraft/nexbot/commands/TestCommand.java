@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.crabcraft.nexbot.commandler.Command;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
+import org.javacord.api.entity.permission.PermissionType;
+import org.javacord.api.entity.permission.Permissions;
+import org.javacord.api.entity.server.Server;
+import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 public class TestCommand extends Command {
@@ -24,19 +28,25 @@ public class TestCommand extends Command {
     @Override
     public void onCommand(MessageCreateEvent event, String[] args) {
 
-        EmbedBuilder embed = new EmbedBuilder()
-            .setAuthor(event.getMessageAuthor())
-            .setColor(Color.GREEN)
-            .setTitle(this.Name());
+        Server server = event.getServer().get();
+        User author = event.getMessageAuthor().asUser().get();
 
-        if (args.length > 0) {
-            StringBuilder builder = new StringBuilder();
-            for (String arg : args) {
-                builder.append(arg + " ");
-            }
+        Permissions perms = server.getPermissions(author);
 
-            embed.setDescription(builder.toString());
+        StringBuilder builder = new StringBuilder();
+        builder.append("```md\n");
+
+        for (PermissionType perm : perms.getAllowedPermission()) {
+            builder.append(perm + "\n");
         }
+
+        builder.append("```");
+
+        EmbedBuilder embed = new EmbedBuilder()
+            .setColor(Color.GREEN)
+            .setTitle("User Permissions")
+            .setAuthor(event.getApi().getYourself())
+            .setDescription(builder.toString());
 
         sendResponse(event, embed);
     }
