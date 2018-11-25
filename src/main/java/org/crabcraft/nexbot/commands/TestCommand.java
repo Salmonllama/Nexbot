@@ -1,9 +1,11 @@
 package org.crabcraft.nexbot.commands;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 
 import org.crabcraft.nexbot.commandler.Command;
+import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 public class TestCommand extends Command {
@@ -21,9 +23,21 @@ public class TestCommand extends Command {
 
     @Override
     public void onCommand(MessageCreateEvent event, String[] args) {
-        sendResponse(event, "test");
+
+        EmbedBuilder embed = new EmbedBuilder()
+            .setAuthor(event.getMessageAuthor())
+            .setColor(Color.GREEN)
+            .setTitle(this.Name());
+
         if (args.length > 0) {
-            sendResponse(event, args[0]);
+            StringBuilder builder = new StringBuilder();
+            for (String arg : args) {
+                builder.append(arg + " ");
+            }
+
+            embed.setDescription(builder.toString());
         }
+
+        sendResponse(event, embed);
     }
 }
