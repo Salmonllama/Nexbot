@@ -7,6 +7,7 @@ import java.util.concurrent.Future;
 import org.crabcraft.nexbot.utilities.Config;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
+import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
@@ -21,7 +22,7 @@ public abstract class Command implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(MessageCreateEvent event) {
-        if (event.getMessageAuthor().asUser().get().isBot()) {
+        if (event.getMessageAuthor().asUser().map(User::isBot).orElse(true)) {
             // Ignore bot users
             return;
         }
