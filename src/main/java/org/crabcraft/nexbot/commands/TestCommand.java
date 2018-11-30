@@ -23,7 +23,7 @@ public class TestCommand extends Command {
     @Override
     public String Usage() { return "test"; }
     @Override
-    public List<String> Permissions() { return Arrays.asList("none"); }
+    public String Permission() { return "ADMINISTRATOR"; }
 
     @Override
     public void onCommand(MessageCreateEvent event, String[] args) {
