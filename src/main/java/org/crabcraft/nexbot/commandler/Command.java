@@ -47,8 +47,6 @@ public abstract class Command implements MessageCreateListener {
         onCommand(event, getCommandArgs(event.getMessageContent()));
     }
 
-    // TODO hasPermissions() inhibitor
-
     protected static String[] cutPrefix(String message) {
         // Remove the prefix from the command
         return message.substring(1).split(" ");
@@ -65,6 +63,7 @@ public abstract class Command implements MessageCreateListener {
     }
 
     protected boolean hasPermission(MessageCreateEvent event, User author) {
+        // Check if the user has permission to use that command
         if (this.Permission().equals("none")) {
             // Allow everyone to use a command with no reqperms
             return true;
@@ -79,6 +78,7 @@ public abstract class Command implements MessageCreateListener {
         }
         
         if (!event.getServer().get().getPermissions(author).getAllowedPermission().toString().contains(this.Permission())) {
+            // If the user doesn't have reqperm, don't let them use the command!
             event.getChannel().sendMessage(PrefabResponses.noPermissions(event, this.Permission()));
             return false;
         }
