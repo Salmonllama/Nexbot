@@ -8,12 +8,9 @@ import org.crabcraft.nexbot.utilities.Config;
 import org.crabcraft.nexbot.utilities.PrefabResponses;
 import org.javacord.api.entity.message.Message;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
-import org.javacord.api.entity.permission.PermissionType;
-import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
-import org.javacord.api.listener.server.ServerAttachableListenerManager;
 
 public abstract class Command implements MessageCreateListener {
 
