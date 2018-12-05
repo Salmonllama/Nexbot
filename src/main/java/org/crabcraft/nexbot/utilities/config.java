@@ -10,8 +10,10 @@ import java.util.Properties;
 
 public class Config {
 
+    private static String fileName = "config.properties";
+
     public static void firstTimeSetup() {
-        if (new File("config.properties").exists()) {
+        if (new File(fileName).exists()) {
             System.out.println("Config file exists, skipping first time setup");
         }
         else if (new File("config.example.properties").exists()) {
@@ -29,7 +31,7 @@ public class Config {
             properties.setProperty("default-prefix", "?");
 
             try {
-                properties.store(new FileWriter(new File("config.properties")), null);
+                properties.store(new FileWriter(new File(fileName)), null);
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -37,9 +39,8 @@ public class Config {
         }
      }
 
-     public static Properties loadConfigFile() {
+     private static Properties loadConfigFile() {
         Properties properties = new Properties();
-        String fileName = "config.properties";
         InputStream input = null;
 
         try {
@@ -60,10 +61,10 @@ public class Config {
      }
 
     public static String getToken() {
-        return Config.loadConfigFile().getProperty("token");
+        return loadConfigFile().getProperty("token");
      }
 
     public static String getDefaultPrefix() {
-        return Config.loadConfigFile().getProperty("default-prefix");
-     }
+        return loadConfigFile().getProperty("default-prefix");
+    }
 }

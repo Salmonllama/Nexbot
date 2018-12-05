@@ -37,29 +37,29 @@ public abstract class Command implements MessageCreateListener {
             // Ignore any message that doesn't start with a registered command or its alias
             return;
         }
-        if (!hasPermission(event, event.getMessageAuthor().asUser().get())) {
+        if (!hasPermission(event, event.getMessageAuthor().asUser().orElseThrow(AssertionError::new))) {
             return;
         }
 
         onCommand(event, getCommandArgs(event.getMessageContent()));
     }
 
-    protected static String[] cutPrefix(String message) {
+    private static String[] cutPrefix(String message) {
         // Remove the prefix from the command
         return message.substring(1).split(" ");
     }
 
-    protected boolean isCommand(String string) {
+    private boolean isCommand(String string) {
         // Check if the string is a command or a command alias
         return Aliases().contains(Command.cutPrefix(string)[0]);
     }
 
-    protected String[] getCommandArgs(String message) {
+    private String[] getCommandArgs(String message) {
         // Get the arguments; remove the command itself
         return Arrays.copyOfRange(cutPrefix(message), 1, cutPrefix(message).length);
     }
 
-    protected boolean hasPermission(MessageCreateEvent event, User author) {
+    private boolean hasPermission(MessageCreateEvent event, User author) {
         // Check if the user has permission to use that command
         if (this.Permission().equals("none")) {
             // Allow everyone to use a command with no reqperms

@@ -1,18 +1,21 @@
 package org.crabcraft.nexbot;
 
+import org.crabcraft.nexbot.commandler.Command;
 import org.crabcraft.nexbot.commandler.CommandRegistry;
 import org.crabcraft.nexbot.commands.TestCommand;
 import org.crabcraft.nexbot.controlpanel.BotPanel;
 import org.crabcraft.nexbot.utilities.Config;
 import org.crabcraft.nexbot.utilities.Database;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.activity.ActivityType;
 import org.javacord.api.DiscordApi;
+import org.javacord.api.entity.permission.PermissionType;
 
 public class Nexbot {
     
     public static void main(String[] args) {
         
-        // Do first time bot setup.
+        // Bot initialisation:
         Config.firstTimeSetup();
         Database.firstTimeSetup();
 
