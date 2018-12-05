@@ -1,5 +1,6 @@
 package org.crabcraft.nexbot.commandler;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -83,12 +84,19 @@ public abstract class Command implements MessageCreateListener {
         return true;
     }
 
-    // TODO: Send MessageBuilders, Messages.
     protected Future<Message> sendResponse(MessageCreateEvent event, String message) {
         return event.getChannel().sendMessage(message);
     }
 
     protected Future<Message> sendResponse(MessageCreateEvent event, EmbedBuilder embed) {
         return event.getChannel().sendMessage(embed);
+    }
+
+    protected Future<Message> sendResponse(MessageCreateEvent event, File file) {
+        return event.getChannel().sendMessage(file);
+    }
+
+    protected Future<Message> sendResponse(MessageCreateEvent event, File file, String message) {
+        return event.getChannel().sendMessage(message, file);
     }
 }
