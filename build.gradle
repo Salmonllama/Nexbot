@@ -21,6 +21,12 @@ repositories {
 }
 
 dependencies {
+    // The Javacord API Library for Discord
     implementation "org.javacord:javacord:3.0.1"
-    compile "org.xerial:sqlite-jdbc:3.7.2"
+
+    // The SQLite3 driver
+    implementation "org.xerial:sqlite-jdbc:3.7.2"
+
+    // Apache Commons Text for custom UID generation
+    implementation "org.apache.commons:commons-text:1.6"
 }
