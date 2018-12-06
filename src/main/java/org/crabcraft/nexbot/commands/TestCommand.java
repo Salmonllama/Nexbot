@@ -17,7 +17,7 @@ public class TestCommand extends Command {
     @Override
     public String Name() { return "Test Command"; }
     @Override
-    public List<String> Aliases() { return Arrays.asList("test"); }
+    public List<String> Aliases() { return Arrays.asList("test", "t"); }
     @Override
     public String Description() { return "Just a test command, look the other way"; }
     @Override
