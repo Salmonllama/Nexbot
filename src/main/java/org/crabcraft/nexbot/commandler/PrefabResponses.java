@@ -1,4 +1,4 @@
-package org.crabcraft.nexbot.utilities;
+package org.crabcraft.nexbot.commandler;
 
 import java.awt.Color;
 
