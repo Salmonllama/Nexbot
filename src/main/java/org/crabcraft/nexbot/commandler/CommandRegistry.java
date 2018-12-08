@@ -11,6 +11,10 @@ public class CommandRegistry {
     public CommandRegistry(DiscordApi dApi) {
         commands = new TreeMap<>();
 
+        // Run Config and DB setups
+        FrameworkConfig.firstTimeSetup();
+        FrameworkDB.firstTimeSetup();
+
         this.api = dApi;
         this.api.addServerJoinListener(event -> {
             FrameworkDB.serverFirstTimeSetup(event.getServer().getName(), event.getServer().getIdAsString());
