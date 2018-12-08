@@ -1,4 +1,4 @@
-package org.crabcraft.nexbot.utilities;
+package org.crabcraft.nexbot.commandler;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,13 +8,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class Config {
+public class FrameworkConfig {
 
     private static String fileName = "config.properties";
 
     public static void firstTimeSetup() {
         if (new File(fileName).exists()) {
-            System.out.println("Config file exists, skipping first time setup");
+            System.out.println("FrameworkConfig file exists, skipping first time setup");
         }
         else if (new File("config.example.properties").exists()) {
             System.out.println(
@@ -24,7 +24,7 @@ public class Config {
             );
         }
         else {
-            System.out.println("Config file does not exist, we need to create it!");
+            System.out.println("FrameworkConfig file does not exist, we need to create it!");
             // Create and set the first time config file.
             Properties properties = new Properties();
             properties.setProperty("token", "YOUR-TOKEN-HERE");

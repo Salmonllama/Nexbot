@@ -1,12 +1,20 @@
 package org.crabcraft.nexbot.commandler;
 
+import org.javacord.api.DiscordApi;
+
 import java.util.TreeMap;
 
 public class CommandRegistry {
+    private final DiscordApi api;
     private static TreeMap<String, Command> commands;
 
-    public CommandRegistry() {
+    public CommandRegistry(DiscordApi dApi) {
         commands = new TreeMap<>();
+
+        this.api = dApi;
+        this.api.addServerJoinListener(event -> {
+            FrameworkDB.serverFirstTimeSetup(event.getServer().getName(), event.getServer().getIdAsString());
+        });
     }
 
     public Command registerCommand(Command command) {
