@@ -1,4 +1,4 @@
-package org.crabcraft.nexbot.utilities.database;
+package org.crabcraft.nexbot.commandler;
 
 import org.crabcraft.nexbot.utilities.Config;
 
@@ -33,7 +33,7 @@ public class Database {
 
     public static void firstTimeSetup() {
         // Check if nexbot.db exists, if not, create it.
-        if (new File("nexbot.db").exists()) {
+        if (new File("cmdframework.db").exists()) {
             System.out.println("Database exists, no need for further action.");
         }
         else {
@@ -52,7 +52,7 @@ public class Database {
             Statement stmt = conn.createStatement();
             stmt.execute("CREATE TABLE IF NOT EXISTS serverconf"
                             + "(serverId TEXT NOT NULL PRIMARY KEY, serverName TEXT NOT NULL,"
-                            + " prefix TEXT NOT NULL, logChannel TEXT)");
+                            + " prefix TEXT NOT NULL)");
             System.out.println("serverConf initialised");
         }
         catch (SQLException e) {
@@ -65,7 +65,7 @@ public class Database {
             stmt.execute("INSERT INTO serverconf"
                             + "(serverId, serverName, prefix, logChannel)"
                             + "VALUES"
-                            + "(" + serverId + "," + serverName + "," + Config.getDefaultPrefix() + "," + null + ")"
+                            + "(" + serverId + "," + serverName + "," + Config.getDefaultPrefix() + ")"
             );
         }
         catch (SQLException e) {
