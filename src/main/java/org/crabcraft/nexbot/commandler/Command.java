@@ -20,6 +20,7 @@ public abstract class Command implements MessageCreateListener {
     public abstract String Description();
     public abstract String Name();
     public abstract String Usage();
+    public abstract String Category();
     public abstract String Permission();
 
     @Override

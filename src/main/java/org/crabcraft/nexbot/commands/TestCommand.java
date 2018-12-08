@@ -23,6 +23,8 @@ public class TestCommand extends Command {
     @Override
     public String Usage() { return "test"; }
     @Override
+    public String Category() { return "admin"; }
+    @Override
     public String Permission() { return "ADMINISTRATOR"; }
 
     @Override
