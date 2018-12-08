@@ -11,6 +11,7 @@ import org.javacord.api.DiscordApi;
 public class Nexbot {
     
     public static void main(String[] args) {
+        // Entire bot needs a fundamental reorganise/rework now that Commandler has been fully released. Stay Tuned.
         
         // Bot initialisation:
         FrameworkConfig.firstTimeSetup(); // Needs changing. Was moved to become a component of the framework.
